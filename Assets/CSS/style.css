@@ -1,0 +1,20 @@
+.gifContainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  flex-flow: row wrap;
+}
+
+.images {
+  width: 20%;
+}
+
+h1 {
+  text-align: center;
+  color: yellow;
+}
+
+#body {
+  background-image: url(../Images/0_I-sI3u34g0ydRqyA.png);
+  width: 100%;
+}

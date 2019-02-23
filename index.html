@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Giphy</title>
 
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="Assets/CSS/style.css" />
     <script
       src="https://code.jquery.com/jquery-3.3.1.js"
       integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
@@ -22,6 +22,10 @@
     <button id="shark">Shark Generator</button>
     <button id="unicorn">Unicorn Generator</button>
 
+    <div id="buttons-view"></div>
+    <input type="text" id="array-input" />
+    <input id="add-array" type="submit" value="Add a giphy" />
+
     <h1>Choose Your Giphy</h1>
     <div style="text-align:center;">
       <input type="text" id="search" />
@@ -30,13 +34,6 @@
     <br />
 
     <!-------------------------------------------------------------->
-
-    <div style="text-align:center">
-      <div id="buttons-view"></div>
-      <input type="text" id="array-input" />
-      <!-- Button triggers new giphy to be added -->
-      <input id="add-array" type="submit" value="Add a giphy" />
-    </div>
 
     <div class="giphContainer"></div>
 
@@ -86,13 +83,13 @@
       });
 
       ///////////////////////////////////////////////////////////////////////////////////////
-      $("#buttons-view").on("click", function() {
+      $(document).on("click", ".array", function(event) {
         $(".giphContainer").text("");
-        console.log($("value").val());
+        console.log($(event.target).text());
 
         var gifGet = $.get(
           "https://api.giphy.com/v1/gifs/search?q=" +
-            $("value").val() +
+            $(event.target).text() +
             "&api_key=YVWBiqYGhjDMVgKFVjX8yFb0lsY0JReJ"
         );
         gifGet.done(function(gif) {

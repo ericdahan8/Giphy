@@ -24,12 +24,18 @@
 
     <div id="buttons-view"></div>
     <input type="text" id="array-input" />
-    <input id="add-array" type="submit" value="Add a giphy" />
+    <input
+      id="add-array"
+      type="submit"
+      value="Add a giphy (or choose some emotions!)"
+    />
 
-    <h1>Choose Your Giphy</h1>
-    <div style="text-align:center;">
-      <input type="text" id="search" />
-      <input type="submit" id="submit" />
+    <div class="choose">
+      <h1>Choose Your Giphy</h1>
+      <div style="text-align:center;">
+        <input type="text" id="search" />
+        <input type="submit" id="submit" />
+      </div>
     </div>
     <br />
 
@@ -38,183 +44,7 @@
     <div class="giphContainer"></div>
 
     <!------------------------------------------------------------------>
-    <script>
-      var arrays = ["happy", "angry", "sad", "confused"];
 
-      // We store all of the retrieved data inside of an object called "response"
-
-      function renderButtons() {
-        // Deleting the giphy prior to adding new ones
-        // (this is necessary otherwise we will have repeat buttons)
-        $("#buttons-view").empty();
-
-        // Looping through the array of giphy
-        for (var i = 0; i < arrays.length; i++) {
-          // Then dynamicaly generating buttons for each giphy in the array
-          // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
-          var a = $("<button>");
-          // Adding a class
-          a.addClass("array");
-          // Added a data-attribute
-          a.attr("data-name", arrays[i]);
-          // Provided the initial button text
-          a.text(arrays[i]);
-          // Added the button to the HTML
-          $("#buttons-view").append(a);
-        }
-      }
-      //////////////////////////////////////////////////////////////////////////////////////
-
-      ///////////////////////////////////////////////////////////////////////////////////////
-      // This function handles events where one button is clicked
-      $("#add-array").on("click", function(event) {
-        event.preventDefault();
-
-        // This line grabs the input from the textbox
-        var array = $("#array-input")
-          .val()
-          .trim();
-
-        // The movie from the textbox is then added to our array
-        arrays.push(array);
-
-        // Calling renderButtons which handles the processing of our movie array
-        renderButtons();
-      });
-
-      ///////////////////////////////////////////////////////////////////////////////////////
-      $(document).on("click", ".array", function(event) {
-        $(".giphContainer").text("");
-        console.log($(event.target).text());
-
-        var gifGet = $.get(
-          "https://api.giphy.com/v1/gifs/search?q=" +
-            $(event.target).text() +
-            "&api_key=YVWBiqYGhjDMVgKFVjX8yFb0lsY0JReJ"
-        );
-        gifGet.done(function(gif) {
-          for (var i = 0; i < gif.data.length; i++) {
-            var newGify = $("<img/>");
-            newGify.attr("src", gif.data[i].images.fixed_height.url);
-            newGify.addClass("images");
-            $(".giphContainer").append(newGify);
-          }
-        });
-      });
-
-      $("#submit").on("click", function() {
-        $(".giphContainer").text("");
-
-        var gifGet = $.get(
-          "https://api.giphy.com/v1/gifs/search?q=" +
-            $("#search").val() +
-            "&api_key=YVWBiqYGhjDMVgKFVjX8yFb0lsY0JReJ"
-        );
-        gifGet.done(function(gif) {
-          for (var i = 0; i < gif.data.length; i++) {
-            var newGify = $("<img/>");
-            newGify.attr("src", gif.data[i].images.fixed_height.url);
-            newGify.addClass("images");
-            $(".giphContainer").append(newGify);
-          }
-        });
-      });
-
-      $("#random").on("click", function() {
-        $(".giphContainer").text("");
-
-        var gifGet = $.get(
-          "https://api.giphy.com/v1/gifs/search?q=funny&api_key=YVWBiqYGhjDMVgKFVjX8yFb0lsY0JReJ"
-        );
-        gifGet.done(function(gif) {
-          for (var i = 0; i < gif.data.length; i++) {
-            var newGify = $("<img/>");
-            newGify.attr("src", gif.data[i].images.fixed_height.url);
-            newGify.addClass("images");
-            $(".giphContainer").append(newGify);
-          }
-        });
-      });
-
-      $("#meme").on("click", function() {
-        $(".giphContainer").text("");
-
-        var gifGet = $.get(
-          "https://api.giphy.com/v1/gifs/search?q=meme&api_key=YVWBiqYGhjDMVgKFVjX8yFb0lsY0JReJ"
-        );
-        gifGet.done(function(gif) {
-          for (var i = 0; i < gif.data.length; i++) {
-            var newGify = $("<img/>");
-            newGify.attr("src", gif.data[i].images.fixed_height.url);
-            newGify.addClass("images");
-            $(".giphContainer").append(newGify);
-          }
-        });
-      });
-
-      $("#dog").on("click", function() {
-        $(".giphContainer").text("");
-
-        var gifGet = $.get(
-          "https://api.giphy.com/v1/gifs/search?q=dog&api_key=YVWBiqYGhjDMVgKFVjX8yFb0lsY0JReJ"
-        );
-        gifGet.done(function(gif) {
-          for (var i = 0; i < gif.data.length; i++) {
-            var newGify = $("<img/>");
-            newGify.attr("src", gif.data[i].images.fixed_height.url);
-            newGify.addClass("images");
-            $(".giphContainer").append(newGify);
-          }
-        });
-      });
-
-      $("#cat").on("click", function() {
-        $(".giphContainer").text("");
-
-        var gifGet = $.get(
-          "https://api.giphy.com/v1/gifs/search?q=cat&api_key=YVWBiqYGhjDMVgKFVjX8yFb0lsY0JReJ"
-        );
-        gifGet.done(function(gif) {
-          for (var i = 0; i < gif.data.length; i++) {
-            var newGify = $("<img/>");
-            newGify.attr("src", gif.data[i].images.fixed_height.url);
-            newGify.addClass("images");
-            $(".giphContainer").append(newGify);
-          }
-        });
-      });
-
-      $("#shark").on("click", function() {
-        $(".giphContainer").text("");
-
-        var gifGet = $.get(
-          "https://api.giphy.com/v1/gifs/search?q=shark&api_key=YVWBiqYGhjDMVgKFVjX8yFb0lsY0JReJ"
-        );
-        gifGet.done(function(gif) {
-          for (var i = 0; i < gif.data.length; i++) {
-            var newGify = $("<img/>");
-            newGify.attr("src", gif.data[i].images.fixed_height.url);
-            newGify.addClass("images");
-            $(".giphContainer").append(newGify);
-          }
-        });
-      });
-
-      $("#unicorn").on("click", function() {
-        $(".giphContainer").text("");
-
-        var gifGet = $.get(
-          "https://api.giphy.com/v1/gifs/search?q=unicorn&api_key=YVWBiqYGhjDMVgKFVjX8yFb0lsY0JReJ"
-        );
-        gifGet.done(function(gif) {
-          for (var i = 0; i < gif.data.length; i++) {
-            var newGify = $("<img/>");
-            newGify.attr("src", gif.data[i].images.fixed_height.url);
-            newGify.addClass("images");
-            $(".giphContainer").append(newGify);
-          }
-        });
-      });
-    </script>
+    <script src="Assets/Javascript/game.js"></script>
   </body>
 </html>

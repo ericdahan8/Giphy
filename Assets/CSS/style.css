@@ -12,9 +12,42 @@
 h1 {
   text-align: center;
   color: yellow;
+  font-family: monospace;
 }
 
 #body {
-  background-image: url(../Images/0_I-sI3u34g0ydRqyA.png);
+  background-image: url("../Images/0_I-sI3u34g0ydRqyA.png");
   width: 100%;
+}
+
+#random,
+#meme,
+#dog,
+#cat,
+#shark,
+#unicorn,
+#array-input,
+.array,
+#search {
+  background-color: #ffcc33;
+  font-family: monospace;
+  padding: 5px;
+  margin: 10px;
+  text-align: center;
+}
+
+#add-array,
+#submit {
+  background-color: #ffcc33;
+  font-family: monospace;
+  padding: 5px;
+  margin: 10px;
+}
+
+.choose {
+  border: dotted;
+
+  border-color: #66ff66;
+  margin-left: 450px;
+  margin-right: 450px;
 }
